@@ -16,6 +16,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+  "homepage": "http://code-software.me",
   "eslintConfig": {
     "extends": [
       "react-app",
