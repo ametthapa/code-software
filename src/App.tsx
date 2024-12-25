@@ -1,15 +1,12 @@
 import './App.css'
-import { Button } from './components/ui/button'
 
 function App() {
 
   return (
-    <>
-      <div>
-        <Button>Click me</Button>
-      </div>
-      
-    </>
+    <div className="App">
+      <div>Code - Software</div>
+      <div>Under development - </div>
+    </div>
   )
 }
 export default App
