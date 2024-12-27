@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './page/HomePage';
 import AddPrefixSuffix from './features/PrefixSuffix/AddPrefixSuffix';
 import JSONViewer from './features/JsonViewer/JsonViewer';
