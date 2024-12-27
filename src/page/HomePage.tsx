@@ -1,8 +1,8 @@
 import React from 'react';
 
 const tools = [
-    { name: 'Add Prefix/Suffix', link: '/add-prefix-suffix' },
-    { name: 'JSON Formatter', link: '/json-formatter' },
+    { name: 'Add Prefix/Suffix', link: '#/add-prefix-suffix' },
+    { name: 'JSON Formatter', link: '#/json-formatter' },
     // { name: 'Text Reverser', link: '/text-reverser' },
     // { name: 'Case Converter', link: '/case-converter' },
     // { name: 'Base64 Encoder/Decoder', link: '/base64-encoder-decoder' },
@@ -25,10 +25,6 @@ const App: React.FC = () => {
                     ))}
                 </ul>
             </main>
-
-            <footer style={styles.footer}>
-                <p>© 2024 Code-Software. All rights reserved.</p>
-            </footer>
         </div>
     );
 };
@@ -78,12 +74,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         color: '#4fc3f7',
         fontSize: '1.2rem',
         fontWeight: 'bold',
-    },
-    footer: {
-        textAlign: 'center',
-        fontSize: '0.9rem',
-        marginBottom: '20px',
-    },
+    }
 };
 
 export default App;
