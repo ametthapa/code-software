@@ -2,7 +2,7 @@ import React from 'react';
 
 const tools = [
     { name: 'Add Prefix/Suffix', link: '/add-prefix-suffix' },
-    // { name: 'JSON Formatter', link: '/json-formatter' },
+    { name: 'JSON Formatter', link: '/json-formatter' },
     // { name: 'Text Reverser', link: '/text-reverser' },
     // { name: 'Case Converter', link: '/case-converter' },
     // { name: 'Base64 Encoder/Decoder', link: '/base64-encoder-decoder' },
