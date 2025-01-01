@@ -103,6 +103,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     border: "1px solid #ccc",
     borderRadius: "5px",
     resize: "vertical",
+    backgroundColor: "#F9F6EE",
+    color : "#000",
   },
   inputsContainer: {
     display: "flex",
@@ -117,6 +119,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "1rem",
     border: "1px solid #ccc",
     borderRadius: "5px",
+    backgroundColor: "#F9F6EE",
+    color : "#000",
   },
   buttonsContainer: {
     display: "flex",

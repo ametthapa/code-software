@@ -94,6 +94,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     border: "1px solid #ccc",
     borderRadius: "5px",
     resize: "none",
+    backgroundColor: "#F9F6EE",
+    color : "#000",
   },
 };
 
