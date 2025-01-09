@@ -71,7 +71,7 @@ const JSONViewer: React.FC = () => {
   };
 
   // Dynamically calculate width based on the tab count
-  const getTabWidth = (index: number) => {
+  const getTabWidth = () => {
     const baseWidth = 100 / textareaCount;
     return `${baseWidth}%`;
   };
@@ -83,6 +83,14 @@ const JSONViewer: React.FC = () => {
         <button style={styles.addTabButton} onClick={handleAddTab}>
           Add Tab
         </button>
+        {/* Information Message */}
+        <div style={styles.infoMessage}>
+          {textareaCount < 4
+            ? `Now Json Formatter with add tab feature. You can add up to 4 tabs. (${textareaCount} tab${
+                textareaCount > 1 ? "s" : ""
+              } added)`
+            : "Maximum of 4 tabs reached"}
+        </div>
       </div>
 
       {/* Text Area Section */}
@@ -93,7 +101,7 @@ const JSONViewer: React.FC = () => {
             key={index}
             style={{
               ...styles.textareaWrapper,
-              width: getTabWidth(index), // Dynamically calculate width based on tab count
+              width: getTabWidth(), // Dynamically calculate width based on tab count
             }}
           >
             {/* Tab Name Input */}
