@@ -7,7 +7,6 @@ const JSONViewer: React.FC = () => {
   const [textAreaValues, setTextAreaValues] = useState<string[]>([""]);
   const [tabNames, setTabNames] = useState<string[]>(["Tab 1"]); // Store names of each tab
   const [textareaCount, setTextareaCount] = useState(1); // Track number of text areas
-  const [textareaWidth, setTextareaWidth] = useState("100%"); // Width for the first text area
 
   // Function to format JSON for a specific text area
   const handleFormatJSON = (index: number) => {
@@ -43,7 +42,6 @@ const JSONViewer: React.FC = () => {
   // Handle Add Tab functionality
   const handleAddTab = () => {
     if (textareaCount < 4) {
-      setTextareaWidth("50%"); // Halve the width of the existing text area
       setTextAreaValues([...textAreaValues, ""]); // Add a new text area with an empty value
       setTabNames([...tabNames, `Tab ${textareaCount + 1}`]); // Add a name for the new tab
       setTextareaCount(textareaCount + 1); // Increment the text area count
@@ -52,11 +50,30 @@ const JSONViewer: React.FC = () => {
     }
   };
 
+  // Handle Remove Tab functionality
+  const handleRemoveTab = (index: number) => {
+    if (textareaCount > 1) {
+      const updatedValues = textAreaValues.filter((_, idx) => idx !== index);
+      const updatedTabNames = tabNames.filter((_, idx) => idx !== index);
+      setTextAreaValues(updatedValues);
+      setTabNames(updatedTabNames);
+      setTextareaCount(textareaCount - 1); // Decrement the tab count
+    } else {
+      toastr.warning("At least one tab must remain open.");
+    }
+  };
+
   // Handle editing tab names
   const handleTabNameChange = (index: number, newName: string) => {
     const updatedTabNames = [...tabNames];
     updatedTabNames[index] = newName;
     setTabNames(updatedTabNames);
+  };
+
+  // Dynamically calculate width based on the tab count
+  const getTabWidth = (index: number) => {
+    const baseWidth = 100 / textareaCount;
+    return `${baseWidth}%`;
   };
 
   return (
@@ -76,7 +93,7 @@ const JSONViewer: React.FC = () => {
             key={index}
             style={{
               ...styles.textareaWrapper,
-              width: index === 0 ? textareaWidth : "50%", // First one takes 50% width, others 50%
+              width: getTabWidth(index), // Dynamically calculate width based on tab count
             }}
           >
             {/* Tab Name Input */}
@@ -118,6 +135,16 @@ const JSONViewer: React.FC = () => {
               >
                 Clear
               </button>
+
+              {/* Show "Close Tab" button only when tab count > 2 */}
+              {textareaCount > 2 && (
+                <button
+                  style={styles.closeTabButton}
+                  onClick={() => handleRemoveTab(index)}
+                >
+                  Close Tab
+                </button>
+              )}
             </div>
           </div>
         ))}
@@ -150,24 +177,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#fff",
     cursor: "pointer",
   },
-  button: {
-    padding: "5px 10px",
-    fontSize: "0.9rem",
-    border: "none",
-    borderRadius: "5px",
-    backgroundColor: "#007bff",
-    color: "#fff",
-    cursor: "pointer",
-  },
-  clearButton: {
-    padding: "5px 10px",
-    fontSize: "0.9rem",
-    border: "none",
-    borderRadius: "5px",
-    backgroundColor: "#dc3545",
-    color: "#fff",
-    cursor: "pointer",
-  },
   textareasContainer: {
     display: "flex",
     flexDirection: "row", // Display text areas side by side
@@ -182,7 +191,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "100%",
     height: "calc(100vh - 200px)", // Adjust for header and buttons
     padding: "10px",
-    fontSize: "1rem",
+    fontSize: "0.8rem",
     border: "1px solid #ccc",
     borderRadius: "5px",
     resize: "none",
@@ -201,8 +210,36 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   actions: {
     display: "flex",
-    gap: "10px",
+    gap: "5px", // Reduced gap for a more compact layout
     marginTop: "10px",
+    justifyContent: "flex-start", // Align buttons to the left
+  },
+  button: {
+    padding: "3px 8px", // Smaller padding
+    fontSize: "0.75rem", // Smaller font size
+    border: "none",
+    borderRadius: "5px",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    cursor: "pointer",
+  },
+  clearButton: {
+    padding: "3px 8px", // Smaller padding
+    fontSize: "0.75rem", // Smaller font size
+    border: "none",
+    borderRadius: "5px",
+    backgroundColor: "#dc3545",
+    color: "#fff",
+    cursor: "pointer",
+  },
+  closeTabButton: {
+    padding: "3px 8px", // Smaller padding
+    fontSize: "0.75rem", // Smaller font size
+    border: "none",
+    borderRadius: "5px",
+    backgroundColor: "#ffc107",
+    color: "#fff",
+    cursor: "pointer",
   },
 };
 
