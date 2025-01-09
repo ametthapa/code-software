@@ -145,7 +145,7 @@ const JSONViewer: React.FC = () => {
               </button>
 
               {/* Show "Close Tab" button only when tab count > 2 */}
-              {textareaCount > 2 && (
+              {textareaCount > 1 && (
                 <button
                   style={styles.closeTabButton}
                   onClick={() => handleRemoveTab(index)}
